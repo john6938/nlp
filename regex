@@ -1,0 +1,4 @@
+// Passive voice detection
+\b((be(en)?)|(w(as|ere))|(is)|(a(er|m)))(.+(en|ed))([\s]|\.)
+// courtesy of https://www.regextester.com/99978
+
