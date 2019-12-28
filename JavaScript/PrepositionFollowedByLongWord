@@ -1,0 +1,39 @@
+JS
+
+let backupOriginal = "";
+let prepositions = ["as", "at", "by", "in", "of", "on", "re", "to", "up"];
+
+function replacer( str, word, att ) {
+  // This regex is validated by Online regex tester 
+  let SearchString = '(' + word + ') ([A-Za-z]{4,})';
+  let RegularExp = new RegExp(SearchString, "ig");
+  let ReplaceString = ' <span class="' + att + '">$1 $2</span>';
+  let ResString = str.replace( RegularExp, ReplaceString );
+  return ResString;
+}
+
+function onButtonClick() {
+  let target = document.getElementById("output");
+  backupOriginal = document.forms.form.textBox.value;
+  let forShow = backupOriginal;
+  prepositions.forEach(function(value) {
+    forShow = replacer( forShow, value, "mark");
+  });
+  target.innerHTML = forShow;
+}
+
+CSS
+
+span.mark {
+  background-color: yellow;
+}
+
+HTML
+
+<p>Match the pattern of a two-letter preposition (e.g. to, in, at) followed by a word with four or more letters (e.g. to America, in time, at work)</p>
+<form name="form" id="form" action="">
+  <input name="textBox" id="textBox" type="text" value="" placeholder="input your text here"></input>
+  <input type="button" value="See the regex match" onclick="onButtonClick();"></input>
+</form>
+<hr />
+<div id="output"></div>
