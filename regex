@@ -2,3 +2,9 @@
 \b((be(en)?)|(w(as|ere))|(is)|(a(er|m)))(.+(en|ed))([\s]|\.)
 // courtesy of https://www.regextester.com/99978
 
+// Comparative adjective detection
+(more \b.*\b|\w{0,}er|better|less)(?= than))
+
+// Superlative adjective detection
+(?<=the )(most \w{0,}|.+?est|best|least)
+FP = I live in the west coast
