@@ -17,3 +17,6 @@ FP = I live in the west coast
 
 //an followed by word with initial vowel letter
 (/\b[Aa]n\s[aeiouAEIOU][A-z]*(?=\.|,|:|\?|!|\s)/gm)
+
+//word with three or more vowel letters
+\b(?:[b-df-hj-np-tv-z]*?[aeiou][b-df-hj-np-tv-z]*?){3,}\b
