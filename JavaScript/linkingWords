@@ -1,0 +1,166 @@
+JavaScript
+
+let backupOriginal = "";
+let prepositions = [
+  "aboard", "about", "above", "across", "after", "against", "ahead of", "along", "amid", "amidst", "among", "around", "as", "as far as", "as of", "aside from", "at", "athwart", "atop", "barring", "because of", "before", "behind", "below", "beneath", "beside", "besides", "between", "beyond", "but", "by", "by means of", "circa", "concerninc", "despite", "down", "during", "except for", "excluding", "far from", "following", "for excluding", "far from", "following", "for", "from", "in", "in accordance with", "in addition to", "in case of", "in front of", "in lieu of", "in place of", "in spite of", "inside", "instead of", "into", "like", "minus", "near", "next to", "notwithstanding", "of", "off", "on", "on account of", "on behalf of", "on top of", "onto", "opposite", "out", "out of", "outside", "over", "past", "plus", "prior to", "regarding", "regardless of", "save", "since", "than", "through", "throughout", "till", "toward", "towards", "under", "underneath", "unlike", "until", "up", "upon", "versus", "via", "with", "with regard to", "within", "without"];
+let conjunctions = [
+  "for", "and", "nor", "but", "or", "yet", "so", "after", "although", "as", "as if", "as long as", "as much as", "as soon as", "as though", "becasue", "before", "by the time", "even if", "even though", "if", "in order that", "in case", "lest", "once", "only if", "provided that", "since", "so that", "than", "that", "though", "till", "unless", "until", "when", "whenever", "where", "wherever", "while"];
+let adverbs = [
+  "absentmindedly", "adoringly", "awkwardly", "beautifully", "briskly", "brutally", "carefully", "cheerfully", "competitively", "eagerly", "effortlessly", "extravagantly", "girlishly", "gracefully", "grimly", "happily", "halfheartedly", "hungrily", "lazily", "lifhlessly", "loyally", "quickly", "quietly", "quizzically", "really", "recklessly", "remorsefully", "ruthlessly", "savagely", "sloppily", "so", "stylishly", "unabashedly", "unevenly", "urgently", "well", "wishfully", "worriedly", "after", "afterwards", "annualy", "before", "daily", "never", "now", "soon", "still", "then", "today", "tomorrow", "weekly", "when", "yesterday", "abroad", "anywhere", "away", "down", "everywhere", "here", "home", "in", "inside", "out", "outside", "somewhere", "there", "underground", "upstairs", "extremely", "not", "quite", "rather", "really", "terribly", "too", "very", "badly", "worse", "worst", "carefully", "more carefully", "most carefully", "little", "less", "least", "much", "more", "most", "soon", "sooner", "soonest", "well", "better", "best"];
+let pre_con = [...prepositions, ...conjunctions];
+let con_adv = [...conjunctions, ...adverbs];
+let adv_pre = [...adverbs, ...conjunctions];
+let pre_con_adv = [...pre_con, ...adverbs];
+
+// making duplicate word lists
+const list_precon = pre_con.filter(
+  item => prepositions.includes(item) && conjunctions.includes(item)
+ )
+const list_conadv = con_adv.filter(
+  item => conjunctions.includes(item) && adverbs.includes(item)
+ )
+const list_advpre = adv_pre.filter(
+  item => adverbs.includes(item) && prepositions.includes(item) 
+ )
+const list_preconadv = pre_con_adv.filter(
+  item => list_precon.includes(item) && adverbs.includes(item) 
+ )
+
+prepositions = [...new Set(prepositions)];
+let remove_pre = prepositions.filter(function(val) {
+  return list_precon.indexOf(val) == -1;
+});
+
+remove_pre = prepositions.filter(function(val) {
+  return list_advpre.indexOf(val) == -1;
+});
+
+conjunctions = [...new Set(conjunctions)];
+let remove_con = conjunctions.filter(function(val) {
+  return list_precon.indexOf(val) == -1;
+});
+
+remove_con = conjunctions.filter(function(val) {
+  return list_conadv.indexOf(val) == -1;
+});
+
+adverbs = [...new Set(adverbs)];
+let remove_adv = adverbs.filter(function(val) {
+  return list_conadv.indexOf(val) == -1;
+});
+
+remove_adv = adverbs.filter(function(val) {
+  return list_advpre.indexOf(val) == -1;
+});
+
+let remove_precon = [...new Set(list_precon)];
+remove_precon = remove_precon.filter(function(val) {
+  return list_preconadv.indexOf(val) == -1;
+});
+
+let remove_conadv = [...new Set(list_conadv)];
+remove_conadv = remove_conadv.filter(function(val) {
+  return list_preconadv.indexOf(val) == -1;
+});
+
+let remove_advpre = [...new Set(list_advpre)];
+remove_advpre = remove_advpre.filter(function(val) {
+  return list_preconadv.indexOf(val) == -1;
+});
+
+let preconadv = [...new Set(list_preconadv)];
+
+function replacer( str, word, att ) {
+  // This regex is validated by Online regex tester 
+  let SearchString = '\\b' + word + '\\b';
+  let RegularExp = new RegExp(SearchString, "ig");
+  let ReplaceString = '<span class="' + att + '">' + word + '</span>';
+  let ResString = str.replace( RegularExp, ReplaceString );
+  return ResString;
+}
+
+function onButtonClick() {
+  let target = document.getElementById("output");
+  backupOriginal = document.forms.form.textBox.value;
+  let forShow = backupOriginal;
+  
+  remove_pre.forEach(function(value) {
+    forShow = replacer( forShow, value, "mark_pre");
+  });
+  remove_con.forEach(function(value) {
+    forShow = replacer( forShow, value, "mark_con");
+  });
+  remove_adv.forEach(function(value) {
+    forShow = replacer( forShow, value, "mark_adv");
+  });
+  
+  preconadv.forEach(function(value) {
+    forShow = replacer( forShow, value, "mark_all");
+  });
+  remove_precon.forEach(function(value) {
+    forShow = replacer( forShow, value, "mark_pre_con");
+  });
+  remove_conadv.forEach(function(value) {
+    forShow = replacer( forShow, value, "mark_con_adv");
+  });
+  remove_advpre.forEach(function(value) {
+    forShow = replacer( forShow, value, "mark_adv_pre");
+  });
+  // remove_pre.forEach(function(value) {
+  //   forShow = replacer( forShow, value, "mark_pre");
+  // });
+  // remove_con.forEach(function(value) {
+  //   forShow = replacer( forShow, value, "mark_con");
+  // });
+  // remove_adv.forEach(function(value) {
+  //   forShow = replacer( forShow, value, "mark_adv");
+  // });
+  
+  
+  target.innerHTML = forShow;
+}
+
+CSS
+span.mark_pre {
+  background-color: #ff7f7f;
+}
+
+span.mark_con {
+  background-color: #ffff7f;
+}
+
+span.mark_adv {
+  background-color: #7f7fff;
+}
+
+span.mark_pre_con {
+  background-color: #ffbf7f;
+}
+
+span.mark_con_adv {
+  background-color: #7fff7f;
+}
+
+span.mark_adv_pre {
+  background-color: #bf7fff;
+}
+
+span.mark_all {
+  background-color: gray;
+}
+
+input.textBox {
+  width: 75%;
+}
+
+HTML
+
+<form name="form" id="form" action="">
+  <input name="textBox" class="textBox" type="text" value="" placeholder="input your text here"></input>
+  <input type="button" value="See the regex match" onclick="onButtonClick();"></input>
+</form>
+<hr />
+<div id="output"></div>
+
+Implemented at https://codepen.io/yasaka-h/pen/zYYMOwG
+by Sayaka Hoshi & Sumire Satsu & Kurumi Shionome
