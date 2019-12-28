@@ -1,0 +1,21 @@
+// Blooms taxonomy
+// https://aberdeen.k12.sd.us/dsc/departments/edserv/forms/process_verbs.pdf
+
+let knowledge = [
+  "count", "define", "describe", "draw","explain","demonstrate","find", "indentify", "label", "list", "observe", "show", "match", "name", "quote", "recall", "collect", "discover", "recite", "sequence", "tell", "write", "recognize", "experiment"
+];
+let comprehension = [
+  "conclude", "predict", "discuss", "interpret", "illustrate", "generalize", "report", "restate", "review", "translate", "connect", "summarize", "extend", "group", "contrast", "estimate", "differentiate", "distinguish", "locate", "retell", "annotate", "give", "express", "ask"
+]; 
+let application = [
+  "apply", "change", "choose", "compute", "dramatize", "interview", "prepare", "produce", "select", "show", "transfer", "use", "organize", "construct", "order", "collect", "classify", "relate", "discover", "solve", "relate", "modify", "model", "calculate"
+];
+let analysis = [
+  "analyze", "compare", "contrast", "debate", "deduce", "characterize", "diagram", "relate", "examine", "outline", "distinguish", "discriminate", "research", "separate", "specify", "divide", "infer", "dissect", "isolate", "connect", "order", "arrange", "separate", "probe"
+];
+let synthesis = [
+  "add to", "alter", "rename", "predict", "combine", "hypothesize", "design", "integrate", "translate", "rename", "reorganize", "reconstruct", "vary", "substitute", "extend", "create", "generalize", "compose", "invent", "formulate", "plan", "prepare", "perform", "rewrite"
+];
+let evaluation = [
+  "interpret", "judge", "justify", "rank", "decide", "test", "conclude", "support", "verify", "grade", "recommend", "discriminate", "convince", "criticize", "appraise", "argue", "assess", "critic", "Evaluation", "rate", "predict", "prioritize", "prove", "rate", "select"
+];
