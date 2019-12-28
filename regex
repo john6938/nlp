@@ -33,3 +33,6 @@ FP = I live in the west coast
 
 //verbs of inert perception and cognition with or without suffixes -ing and -ed
 \b(?=(abhor|adore?|astonish|believe?|desire?|detest|dislike?|doubt|feel|forgive?|guess|hate?|hear|imagine?|impress|intend|know|like?|love?|mean|mind|perceive?|please?|prefer|presuppose?|realize?|recall|recognize?|regard|remember|satisfy|see|smell|suppose?|taste?|think|understand|want|wish))[A-z]*(?=(ing|ed))?\b
+
+//Present perfect progressive
+^(?=.*(have|has|'ve|'s)*(aleady|just|recently)? been).*ing.*/gm
