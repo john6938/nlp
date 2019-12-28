@@ -20,3 +20,7 @@ FP = I live in the west coast
 
 //word with three or more vowel letters
 \b(?:[b-df-hj-np-tv-z]*?[aeiou][b-df-hj-np-tv-z]*?){3,}\b
+
+//word ending with V followed by word with initial V letter
+\w*[aiueo]\s[aiueo]\w*
+
