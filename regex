@@ -36,3 +36,7 @@ FP = I live in the west coast
 
 //Present perfect progressive
 ^(?=.*(have|has|'ve|'s)*(aleady|just|recently)? been).*ing.*/gm
+
+//Future progressive
+((will|'ll)( not)?|won't)( \w+){0,5} be \b[A-Za-z]+ing\b/gi
+//FP will be annoying, will be confusing (i.e. participle adjectives)
