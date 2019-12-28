@@ -19,3 +19,6 @@ let synthesis = [
 let evaluation = [
   "interpret", "judge", "justify", "rank", "decide", "test", "conclude", "support", "verify", "grade", "recommend", "discriminate", "convince", "criticize", "appraise", "argue", "assess", "critic", "Evaluation", "rate", "predict", "prioritize", "prove", "rate", "select"
 ];
+
+//Other process verbs
+/\b(chang(e|es|ing|ed)|deteriorat(e|ed|ing)|gr(own|ew|ows|owing)|matur(e|ed|es|ing)|slow(s|ing|ed)? down|widen(ing|ed|s)|increas(e|ing|ed|es)|learn(ing|ed|s)?|develop(ing|ed|s)?|ripen(ing|ed|s)?|strengthen(ing|ed|s)?|be(come|coming|came|comes)|die(s|d)?|dying|go(ing|ne|es)?|went|com(e|es|ing)|came|fall(ing|en|s)?|fell|run(ning|s)?|ran|turn(ing|ed|s)?|wear(ing|s)?|wore|worn)\b/gi
