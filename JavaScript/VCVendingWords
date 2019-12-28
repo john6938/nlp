@@ -1,0 +1,52 @@
+  JS
+  
+  function onButtonClick() {
+            // output先 (output)
+            var target = document.getElementById("output");
+            // outputの表示をクリアする (clear output text)
+            target.textContent = null            
+
+            // inputのテキスト取得　(get input text)
+            var inputText = document.getElementById("id_textBox1").value;
+            // 空白で分割して配列にする (input text to array)
+            var inputTextArray = inputText.split(/[^a-zA-Z]|\s/);
+
+            // マッチした単語があるか
+            var isMatched = false;
+
+            // 正規表現(define regular expression)
+            var vcv = new RegExp(/.*[aiueo][^aiueo][aiueo]$/ig);
+            for (var i in inputTextArray) {
+                var result = inputTextArray[i].match(vcv);
+
+                // 正規表現にマッチしたら (if the word matches the regular expression)
+                if (result) {
+                    isMatched = true;
+                    var newNode = document.createElement("li");
+                    newNode.textContent = result + ": Matches the task 1";
+                    target.appendChild(newNode);
+                }
+            }
+
+            // マッチした単語がなかったら (if there is no matching word)
+            if (!isMatched) {
+                var newNode = document.createElement("li");
+                newNode.textContent = "There is no matched word";
+                target.appendChild(newNode);
+            }
+        }
+    
+    HTML
+    
+     <div class="input-area"> <input name="textBox1" id="id_textBox1" type="text" value="" style="
+            height: 20px;
+            width: 400px;
+        " />
+            <input type="button" value="Analyze" onclick="onButtonClick();" /></div>
+
+        <!-- Output Area -->
+        <div class="outpu-area">
+            <div>Result</div>
+            <ul id="output"></ul>
+        </div>
+    
