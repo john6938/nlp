@@ -30,3 +30,6 @@ FP = I live in the west coast
 |joke|jump|kick|laugh|leave|lift|listen|make|march|move|nod|open|play|push|read
 |ride|run|send|shout|sing|sit|smile|spend|stand|talk|think|throw|touch|turn|visit|vote|wait
 |walk|write|yell)[d|ed]*[e|es]*\b
+
+//verbs of inert perception and cognition with or without suffixes -ing and -ed
+\b(?=(abhor|adore?|astonish|believe?|desire?|detest|dislike?|doubt|feel|forgive?|guess|hate?|hear|imagine?|impress|intend|know|like?|love?|mean|mind|perceive?|please?|prefer|presuppose?|realize?|recall|recognize?|regard|remember|satisfy|see|smell|suppose?|taste?|think|understand|want|wish))[A-z]*(?=(ing|ed))?\b
