@@ -1,0 +1,17 @@
+JS
+
+function regex(id){
+  var text = document.getElementById(id).value;
+  var result = text.match(/\b[Aa]n\s[aeiouAEIOU][A-z]*(?=\.|,|:|\?|!|\s)/gm);
+ if(result==null) {
+   alert("No Matched pattern\n");
+ }
+  else alert("Matched pattern:\n"+result);
+}
+
+HTML
+
+ <textarea id="text" name="example2" cols="30" rows="5">
+  </textarea></p>
+<p><button onclick="regex('text');">Go</button></p>
+
