@@ -8,3 +8,12 @@
 // Superlative adjective detection
 (?<=the )(most \w{0,}|.+?est|best|least)
 FP = I live in the west coast
+
+// VCV ending words
+(/.*[aiueo][^aiueo][aiueo]$/ig)
+
+// CVC ending words
+(/.*[^aiueo][aiueo][^aiueo]$/ig)
+
+//an followed by word with initial vowel letter
+(/\b[Aa]n\s[aeiouAEIOU][A-z]*(?=\.|,|:|\?|!|\s)/gm)
