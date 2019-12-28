@@ -1,0 +1,72 @@
+#!/bin/bash
+
+textutil -convert txt ./*/*/*.docx
+
+find ./*/*/*.txt -exec sed "s/$/\n/" {} > tmp.txt \;
+nkf -w tmp.txt > VoiceTenseBalancedCorpus.txt
+rm tmp.txt
+
+sed -i -e 's/\[/\</g' VoiceTenseBalancedCorpus.txt
+sed -i -e 's/\]/\>/g' VoiceTenseBalancedCorpus.txt
+sed -i -e 's/(/\</g' VoiceTenseBalancedCorpus.txt
+sed -i -e 's/)/\>/g' VoiceTenseBalancedCorpus.txt
+
+echo '' > tmp.txt
+
+while read line
+do
+  l2=`echo $line | awk '{sub("<.*.>", "");print $0;}'`
+  l=`echo $line | awk '{print substr($0, match($0, "<.[a-zA-Z]+.>"), RLENGTH)}'`
+
+  l3=$l2$l
+  echo $l3 >> tmp.txt
+done < ./VoiceTenseBalancedCorpus.txt
+
+cat tmp.txt > VoiceTenseBalancedCorpus.txt
+rm tmp.txt
+
+sed -i -e 's/Pref/Perf/g' VoiceTenseBalancedCorpus.txt
+sed -i -e 's/pref/perf/g' VoiceTenseBalancedCorpus.txt
+sed -i -e 's/Fitu/Futu/g' VoiceTenseBalancedCorpus.txt
+sed -i -e 's/fitu/futu/g' VoiceTenseBalancedCorpus.txt
+
+sed -i -e 's/SimpPast/PastSimp/ig' VoiceTenseBalancedCorpus.txt
+sed -i -e 's/SimpPres/PresSimp/ig' VoiceTenseBalancedCorpus.txt
+sed -i -e 's/SimpFutu/FuteSimp/ig' VoiceTenseBalancedCorpus.txt
+sed -i -e 's/SimpPerf/PerfSimp/ig' VoiceTenseBalancedCorpus.txt
+sed -i -e 's/ContPast/PastCont/ig' VoiceTenseBalancedCorpus.txt
+sed -i -e 's/ContPres/PresCont/ig' VoiceTenseBalancedCorpus.txt
+sed -i -e 's/ContFutu/FutuCont/ig' VoiceTenseBalancedCorpus.txt
+sed -i -e 's/PerfPast/PastPerf/ig' VoiceTenseBalancedCorpus.txt
+sed -i -e 's/PerfPres/PresPerf/ig' VoiceTenseBalancedCorpus.txt
+sed -i -e 's/PerfFute/FutePerf/ig' VoiceTenseBalancedCorpus.txt
+
+sed -i -e 's/PastSimp/PastSimp/ig' VoiceTenseBalancedCorpus.txt
+sed -i -e 's/PresSimp/PresSimp/ig' VoiceTenseBalancedCorpus.txt
+sed -i -e 's/FuteSimp/FuteSimp/ig' VoiceTenseBalancedCorpus.txt
+sed -i -e 's/PastPerfSimp/PastPerfSimp/ig' VoiceTenseBalancedCorpus.txt
+sed -i -e 's/PresPerfSimp/PresPerfSimp/ig' VoiceTenseBalancedCorpus.txt
+sed -i -e 's/FutuPerfSimp/FutuPerfSimp/ig' VoiceTenseBalancedCorpus.txt
+sed -i -e 's/PastCont/PastCont/ig' VoiceTenseBalancedCorpus.txt
+sed -i -e 's/PresCont/PresCont/ig' VoiceTenseBalancedCorpus.txt
+sed -i -e 's/FutuCont/FutuCont/ig' VoiceTenseBalancedCorpus.txt
+sed -i -e 's/PastPerfCont/PastPerfCont/ig' VoiceTenseBalancedCorpus.txt
+sed -i -e 's/PresPerfCont/PresPerfCont/ig' VoiceTenseBalancedCorpus.txt
+sed -i -e 's/FutePerfCont/FutePerfCont/ig' VoiceTenseBalancedCorpus.txt
+
+sed -i -e 's/\<PastPerf\>/\<PastPerfSimp\>/ig' VoiceTenseBalancedCorpus.txt
+sed -i -e 's/\<PresPerf\>/\<PresPerfSimp\>/ig' VoiceTenseBalancedCorpus.txt
+sed -i -e 's/\<FutuPerf\>/\<FutuPerfSimp\>/ig' VoiceTenseBalancedCorpus.txt
+
+
+sed -i -e '/^.*[\.|\>]$/!d' VoiceTenseBalancedCorpus.txt
+
+sed -i -e 's/^[0-9]*\.*//' VoiceTenseBalancedCorpus.txt
+
+cat VoiceTenseBalancedCorpus.txt > tmp.txt
+sed -i -e 's/^[-|\,|\・|\:]//' tmp.txt
+nkf -w tmp.txt > VoiceTenseBalancedCorpus.txt
+rm tmp.txt
+
+
+sed -i -e 's/^[<space><tab>]*//' VoiceTenseBalancedCorpus.txt
