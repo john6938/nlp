@@ -2,7 +2,7 @@
 // https://aberdeen.k12.sd.us/dsc/departments/edserv/forms/process_verbs.pdf
 
 let knowledge = [
-  "count", "define", "describe", "draw","explain","demonstrate","find", "indentify", "label", "list", "observe", "show", "match", "name", "quote", "recall", "collect", "discover", "recite", "sequence", "tell", "write", "recognize", "experiment"
+  "count", "define", "describe", "draw","explain","demonstrate","find", "identify", "label", "list", "observe", "show", "match", "name", "quote", "recall", "collect", "discover", "recite", "sequence", "tell", "write", "recognize", "experiment"
 ];
 let comprehension = [
   "conclude", "predict", "discuss", "interpret", "illustrate", "generalize", "report", "restate", "review", "translate", "connect", "summarize", "extend", "group", "contrast", "estimate", "differentiate", "distinguish", "locate", "retell", "annotate", "give", "express", "ask"
