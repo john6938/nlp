@@ -1,4 +1,5 @@
 #!/bin/bash
+# works on Terminal on a Mac
 
 textutil -convert txt ./*/*/*.docx
 
