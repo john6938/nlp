@@ -1,15 +1,15 @@
-verb.body
-verb.change
-verb.cognition
-verb.communication
-verb.competition
-verb.consumption
-verb.contact
-verb.creation
-verb.emotion
-verb.motion
-verb.perception
-verb.possession
-verb.social
-verb.stative
-verb.weather
+verb.body ("verbs of grooming, dressing and bodily care")
+verb.change ("verbs of size, temperature change, intensifying, etc."),
+verb.cognition ("verbs of thinking, judging, analyzing, doubting"),
+verb.communication ("verbs of telling, asking, ordering, singing"),
+verb.competition ("verbs of fighting, athletic activities"),
+verb.consumption ("verbs of eating and drinking"),
+verb.contact ("verbs of touching, hitting, tying, digging"),
+verb.creation ("verbs of sewing, baking, painting, performing"),
+verb.emotion ("verbs of feeling"),
+verb.motion ("verbs of walking, flying, swimming"),
+verb.perception ("verbs of seeing, hearing, feeling"),
+verb.possession ("verbs of buying, selling, owning"),
+verb.social ("verbs of political and social activities and events"),
+verb.relational ("verbs of being, having, spatial relations"), ? verb.stative
+verb.weather ("verbs of raining, snowing, thawing, thundering"),
