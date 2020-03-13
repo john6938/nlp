@@ -40,3 +40,7 @@ FP = I live in the west coast
 //Future progressive
 ((will|'ll)( not)?|won't)( \w+){0,5} be \b[A-Za-z]+ing\b/gi
 //FP will be annoying, will be confusing (i.e. participle adjectives)
+
+//extract APA-type citations - author and information prominent
+str_extract_all(samp, "(\\b[A-Z][^ ,.]+(\\b[A-Z][^ ,.]+|[ ,.&]+|'s|and|et al)* )?\\([^\\)]*(\\d{4}|\\bforthcoming\\b|in prep(aration)?)[^\\)]*\\)")
+
