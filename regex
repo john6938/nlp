@@ -42,5 +42,38 @@ FP = I live in the west coast
 //FP will be annoying, will be confusing (i.e. participle adjectives)
 
 //extract APA-type citations - author and information prominent
-str_extract_all(samp, "(\\b[A-Z][^ ,.]+(\\b[A-Z][^ ,.]+|[ ,.&]+|'s|and|et al)* )?\\([^\\)]*(\\d{4}|\\bforthcoming\\b|in prep(aration)?)[^\\)]*\\)")
+Here's a solution that (i) also splits multiple citations in parantheses (e.g., "(Kok 2017; Peter 2018; etc.)" and (ii) that post-processes the results:
 
+cit <- str_extract_all(samp, "\\([A-Za-z][^)]*\\d{4};|;\\s[A-Za-z][^)]*\\d{4}\\)|\\([A-Za-z][^)]*\\d{4}.*?\\)|\\b[A-Z][a-z].*\\([^A-Za-z)]\\w.*?\\)|\\b[A-Z][a-z].*\\(forthcoming\\)|\\b[A-Z][a-z].*\\(in preparation\\)|\\([A-Za-z][^);]*\\d{4}|(?<=;\\s)[A-Za-z][^);]*\\d{4}")
+It sure hasn't gotten less unwieldy but it's efficient:
+
+cit
+[[1]]
+ [1] "(Norrick 2003)"                            "Partington (2007)"                        
+ [3] "McAllister (2015)"                         "(Rühlemann & O’Donnell 2012)"             
+ [5] "Author (forthcoming)"                      "Peter & Paul (in preparation)"            
+ [7] "(cf. Maynard & Leicher 2007)"              "(Carter et al. 2000: 179)"                
+ [9] "(e.g., Partington 2015)"                   "(O’Keeffe 2004)"                          
+[11] "(e.g., Rühlemann & O’Donnell 2012: 11-22)" "Abcd & Xyz's (1777)"                      
+[13] "Searle’s (1975)"                           "Xyz et al.'s (1999)"                      
+[15] "(see also Kok 2017;"                       "Sperber & Wilson 1986" 
+Now we can clean the results by removing anything that is not strictly part of the citiation:
+
+cit_clean <- gsub("\\(|\\)|:\\s\\d+(-\\d+)?|(e\\.g\\.,|see also|cf.)\\s|'s|’s|;", "", unlist(cit))
+cit_clean
+ [1] "Norrick 2003"                "Partington 2007"             "McAllister 2015"            
+ [4] "Rühlemann & O’Donnell 2012"  "Author forthcoming"          "Peter & Paul in preparation"
+ [7] "Maynard & Leicher 2007"      "Carter et al. 2000"          "Partington 2015"            
+[10] "O’Keeffe 2004"               "Rühlemann & O’Donnell 2012"  "Abcd & Xyz 1777"            
+[13] "Searle 1975"                 "Xyz et al. 1999"             "Kok 2017"                   
+[16] "Sperber & Wilson 1986"
+And finally we can remove the duplicates and order the unique results alphabetically:
+
+cit_unique <- sort(unique(cit_clean))
+cit_unique
+ [1] "Abcd & Xyz 1777"             "Author forthcoming"          "Carter et al. 2000"         
+ [4] "Kok 2017"                    "Maynard & Leicher 2007"      "McAllister 2015"            
+ [7] "Norrick 2003"                "O’Keeffe 2004"               "Partington 2007"            
+[10] "Partington 2015"             "Peter & Paul in preparation" "Rühlemann & O’Donnell 2012" 
+[13] "Searle 1975"                 "Sperber & Wilson 1986"       "Xyz et al. 1999"
+created by Christoph Ruehlemann
