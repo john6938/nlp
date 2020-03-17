@@ -77,3 +77,54 @@ cit_unique
 [10] "Partington 2015"             "Peter & Paul in preparation" "Rühlemann & O’Donnell 2012" 
 [13] "Searle 1975"                 "Sperber & Wilson 1986"       "Xyz et al. 1999"
 created by Christoph Ruehlemann
+
+//to extract and create ordered list of citations
+### STEP 1: Load manuscript and paste it together into a single character string:
+ms <- paste0(ms, collapse = " ")
+
+### STEP 2: define patterns for types of citations:
+
+# pattern 1: match citations completely enclosed in parenthesis, e.g., "(Kok 2017 etc.)"
+p_1 <- "\\((Mc|O’)?[A-Za-zé][^)]*\\d{4}\\)"
+
+# pattern 2: match citations where only year etc. is enclosed in parentheses, e.g., "Kok (2017 etc.)"
+p_2 <- "(Mc|O’)?[A-Z][a-zé]+\\b\\s\\(\\d{4}(: \\d+)?\\)"
+
+# pattern 3: match citations where name is followed by stuff before parenthesis, e.g., "Kok et al.'s (2017: 1-12)"
+p_3 <- "(Mc|O’)?[A-Z][a-zé]+(\\set al\\.)?(’s)?\\s\\(\\d{4}(: \\d+)?\\)"
+
+# pattern 4: match citations with 2 names before parentheses, e.g., "Kok & Kik's (2017: 1-12)"
+p_4 <- "(Mc|O’)?[A-Z][a-zé]+\\b\\s&\\s(Mc|O’)?[A-Z][a-zé]+\\b(’s)?\\s\\(\\d{4}(: \\d+)?\\)"
+
+# pattern 5: match  citations with 2 names enclosed in parentheses, e.g., "(Kok & Kik 2017: 1-12)"
+p_5 <- "\\((Mc|O’)?[A-Z][a-zé]+\\b\\s&\\s(Mc|O’)?[A-Z][a-zé]+\\b\\s\\d{4}(: \\d+)?\\)"
+
+# pattern 6: match citations enclosed in parentheses and preceded by stuff,  e.g., "(e.g., Kok & Kik 2017: 1-12)"
+p_6 <- "\\((cf\\.\\s|e\\.g\\.,\\s)?(Mc|O’)?[A-Z][a-zé]+(\\set al\\.)?\\s\\d{4}(: \\d+)?\\)"
+
+# pattern 7: match multi-citations in parentheses, "(cf. Kik & Kok’s 2018; Pit 2008; 23; Joe 2017)"
+p_7 <- "\\((cf\\.|e\\.g\\.,\\s)?(Mc|O’)?[A-Z][a-z][^)]*\\d{4}(: \\d+)?;(\\scf\\. also)?\\s(Mc|O’)?[A-Z][a-z][^)]*\\d{4}(: \\d+)?\\)"
+
+# pattern 8: match citations in square brackets, e.g., "(but see Kik & Kok’s [2018]; cf. also [Pet 2008: 23])"
+p_8 <- "(Mc|O’)?[A-Z][a-zé]+\\b\\s&\\s(Mc|O’)?[A-Z][a-zé]+\\b(’s)?\\s\\[\\d{4}(: \\d+)?\\]|\\[(Mc|O’)?[A-Z][a-zé]+\\b\\s\\d{4}(: \\d+)?\\]"
+
+
+### STEP 3: combine patterns and apply them to manuscript:
+# combine:
+allpatterns <- paste(c(p_step1,p_step2,p_step3,p_step4,p_step5,p_step6,p_step7, p_step8), collapse="|")
+
+# extract using `str_extract`:
+str_extract_all(ms, allpatterns)
+
+### STEP 4: post-process result
+# save:
+cit <- str_extract_all(ms, allpatterns)
+
+# split multi-citations, eg, "(A 2000; B 1999; ...)":
+cit_split <- unlist(str_split(unlist(cit), ";\\s"))
+
+# clean up:
+cit_clean <- gsub("\\(|\\)|\\[|\\]|:\\s\\d+(-\\d+)?|(e\\.g\\.,|see also|cf.(\\salso)?)\\s|'s|’s|;", "", cit_split)
+
+# order unique citations alphabetically :
+cit_unique <- sort(unique(cit_clean))
