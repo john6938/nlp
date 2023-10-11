@@ -1,0 +1,62 @@
+Adjectives are listed alphabetically by gradable equivalent.
+In a number of cases one gradable adjective has multiple limit adjectives that correspond to it.
+
+Gradable, Non-gradable (limit)
+
+Angry,furious	
+Annoying, infuriating	
+Bad,atrocious, 
+Bad,vile, 
+Bad,awful, 
+Bad,dreadful, 
+Bad,ghastly
+Beautiful,beautiful, 
+Beautiful,stunning, 
+Beautiful,gorgeous
+Big,enormous, 
+Big,huge, 
+Big,gigantic, 
+Big,massive
+Boring,mind-numbing
+Busy,hectic
+Careless,reckless
+Clean,spotless
+Cold,freezing
+Crazy,mad, 
+Crazy,nuts, 
+Crazy,bananas [very informal]
+Dirty,filthy
+Drunk,paralytic, 
+Drunk,pissed [offensive]	
+Exciting,exhilarating
+Frightening,terrifying
+Funny,hilarious
+Good,fabulous 
+Good,fantastic
+Good,superb 
+Good,marvelous 
+Good,splendid
+Good,excellent 
+Happy, ecstatic 
+Happy,elated
+Hot,boiling, 
+Hot,scorching
+Hungry,starving, 
+Hungry, famished
+Interesting,fascinating, 
+Interesting, engrossing, 
+Interesting, enthralling
+Important,vital
+Poor,penniless
+Rich,loaded [inf]
+Sad,miserable
+Shocking,horrifying
+Small,minute, 
+Small,tiny
+Surprising,astonishing, 
+Surprising,astounding	
+Tasty,delicious
+Thirsty,parched
+Tired,exhausted
+Ugly,grotesque, 
+Ugly,hideous
